@@ -192,6 +192,7 @@ class IncomingMessage
 
     protected function getThread() {
         $thread = imap_thread($this->imapStream);
+        dump($thread);
         $this->thread = $thread;
     }
 
@@ -751,6 +752,7 @@ class IncomingMessage
             'attachments' => $this->attachments,
             'section' => $this->section,
             'structure' => $this->structure,
+            'thread' => $this->thread,
             'debug' => $this->debug,
         );
     }
