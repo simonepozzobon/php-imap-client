@@ -203,20 +203,18 @@ class ImapClient
     }
 
     public function getThreads() {
-        $threads = imap_thread($this->imap);
-        foreach ($threads as $key => $val) {
-            $tree = explode('.', $key);
-            if ($tree[1] == 'num') {
-                $header = imap_fetch_overview($this->imap, $val);
-                dd($header);
-                if (isset($header[0])) {
-                    echo "<ul>\n\t<li>" . $header[0]->from . "\n";
-                }
-            } elseif ($tree[1] == 'branch') {
-                echo "\t</li>\n</ul>\n";
+        $thread = imap_thread($this->imap);
+        foreach($thread as $id->val) {
+            list($node, $property) = explode('.', $id);
+            if ($property == 'num') {
+                $header = imap_headerinfo($this->imap, $val);
+                echo '<ul>\n<li>' . $header->Subject . ' by ' . htmlentities($header->fromaddress) . '</li>\n';
+            } elseif ($property == 'branch') {
+                echo '</ul>\n';
             }
         }
-        return $threads;
+
+        return $thread;
     }
 
     /**
