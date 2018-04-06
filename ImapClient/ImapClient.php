@@ -204,6 +204,7 @@ class ImapClient
 
     public function getThreads() {
         $threads = imap_thread($this->imap);
+        dd($threads);
         foreach ($threads as $key => $val) {
             $tree = explode('.', $key);
             if ($tree[1] == 'num') {
