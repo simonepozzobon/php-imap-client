@@ -721,8 +721,7 @@ class IncomingMessage
                 }
             }
         } else {
-            dump($this->message);
-            dd('errore');
+            continue;
         }
     }
 
