@@ -204,9 +204,9 @@ class ImapClient
 
     public function getThreads() {
         $threads = imap_thread($this->imap);
-        dd($threads);
         foreach ($threads as $key => $val) {
             $tree = explode('.', $key);
+            dd($tree);
             if ($tree[1] == 'num') {
                 $header = imap_headerinfo($this->imap, $val);
                 echo "<ul>\n\t<li>" . $header->fromaddress . "\n";
