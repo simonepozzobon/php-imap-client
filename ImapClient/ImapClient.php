@@ -205,12 +205,14 @@ class ImapClient
     public function getThreads() {
         $thread = imap_thread($this->imap);
         foreach($thread as $id => $val) {
-            list($node, $property) = explode('.', $id);
-            if ($property == 'num') {
-                $message = $this->getMessage($val);
-                echo '<ul>\n<li>' . $message->header->from . '</li>\n';
-            } elseif ($property == 'branch') {
-                echo '</ul>\n';
+            if ($val > 0) {
+                list($node, $property) = explode('.', $id);
+                if ($property == 'num') {
+                    $message = $this->getMessage($val);
+                    echo '<ul>\n<li>' . $message->header->from . '</li>\n';
+                } elseif ($property == 'branch') {
+                    echo '</ul>\n';
+                }
             }
         }
 
