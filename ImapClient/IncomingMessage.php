@@ -192,6 +192,7 @@ class IncomingMessage
 
     protected function getThread() {
         $thread = imap_thread($this->imapStream);
+        $this->thread = $thread;
     }
 
 
