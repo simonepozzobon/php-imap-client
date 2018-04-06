@@ -208,7 +208,7 @@ class ImapClient
             list($node, $property) = explode('.', $id);
             if ($property == 'num') {
                 $message = $this->getMessage($val);
-                echo '<ul>\n<li>' . $message->from . '</li>\n';
+                echo '<ul>\n<li>' . $message->header->from . '</li>\n';
             } elseif ($property == 'branch') {
                 echo '</ul>\n';
             }
