@@ -720,8 +720,6 @@ class IncomingMessage
                     $this->message->$typeMessage->body = $this->convertToUtf8($this->message->$typeMessage->body, $this->message->$typeMessage->charset);
                 }
             }
-        } else {
-            continue;
         }
     }
 
