@@ -1,7 +1,7 @@
 <?php
 /**
  * Copyright (C) 2016-2017  SSilence
- * For the full license, please see LICENSE. 
+ * For the full license, please see LICENSE.
  */
 
 namespace SSilence\ImapClient;
@@ -130,9 +130,9 @@ class ImapClient
      * $return imap
      */
     public function getImapConnection() {
-        return $this->imap;   
+        return $this->imap;
     }
-    
+
     /**
      * Set connection config
      *
@@ -266,7 +266,7 @@ class ImapClient
 	         $ret = imap_savebody($this->imap, $saveFile, $id);
          }
          fclose($saveFile);
-         
+
          return $ret;
      }
 
@@ -765,7 +765,18 @@ class ImapClient
     public function setUnseenMessage($ids)
     {
         // We need better docs for this
-        return imap_clearflag_full($this->imap, $ids, "\\Seen");   
+        return imap_clearflag_full($this->imap, $ids, "\\Seen");
+    }
+
+    /**
+     * Set flag message SEEN
+     *
+     * @param int $ids or string like 1,2,3,4,5 or string like 1:5
+     * @return bool
+     */
+    public function setSeenMessage($ids)
+    {
+        return imap_setflag_full($this->imap, $ids, "\\Seen");
     }
 
     /**
