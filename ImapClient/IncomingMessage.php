@@ -332,7 +332,7 @@ class IncomingMessage
         // disable attachments for now
 
 
-        // $attachments = array();
+        $attachments = array();
         // foreach ($this->getSections(self::SECTION_ATTACHMENTS) as $section) {
         //     $obj = $this->getSection($section);
         //     $attachment = new IncomingMessageAttachment($obj);
@@ -342,7 +342,7 @@ class IncomingMessage
         //     $objNew->info = $obj;
         //     $attachments[] = $objNew;
         // }
-        // $this->attachments = $attachments;
+        $this->attachments = $attachments;
     }
 
     /**
