@@ -204,7 +204,7 @@ class ImapClient
 
     public function getThreads() {
         $thread = imap_thread($this->imap);
-        foreach($thread as $id->val) {
+        foreach($thread as $id => $val) {
             list($node, $property) = explode('.', $id);
             if ($property == 'num') {
                 $header = imap_headerinfo($this->imap, $val);
