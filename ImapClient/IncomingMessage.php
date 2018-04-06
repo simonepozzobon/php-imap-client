@@ -55,6 +55,14 @@ class IncomingMessage
     public $header;
 
     /**
+     * Thread of the message.
+     *
+     * @var object
+     */
+    public $thread;
+
+
+    /**
      * The message.
      *
      * @var object
@@ -179,7 +187,13 @@ class IncomingMessage
         if ($this->_decode === self::DECODE) {
             $this->decode();
         }
+        $this->getThread();
     }
+
+    protected function getThread() {
+        $thread = imap_thread($this->imapStream);
+    }
+
 
     /**
      * Get headers in the current message.
