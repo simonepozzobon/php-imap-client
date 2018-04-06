@@ -207,7 +207,7 @@ class ImapClient
         foreach ($threads as $key => $val) {
             $tree = explode('.', $key);
             if ($tree[1] == 'num') {
-                $header = imap_headerinfo($nntp, $val);
+                $header = imap_headerinfo($this->imap, $val);
                 echo "<ul>\n\t<li>" . $header->fromaddress . "\n";
             } elseif ($tree[1] == 'branch') {
                 echo "\t</li>\n</ul>\n";
