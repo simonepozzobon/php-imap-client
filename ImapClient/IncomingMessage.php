@@ -329,17 +329,20 @@ class IncomingMessage
      */
     protected function getAttachments()
     {
-        $attachments = array();
-        foreach ($this->getSections(self::SECTION_ATTACHMENTS) as $section) {
-            $obj = $this->getSection($section);
-            $attachment = new IncomingMessageAttachment($obj);
-            $objNew = new \stdClass();
-            $objNew->name = $attachment->name;
-            $objNew->body = $attachment->body;
-            $objNew->info = $obj;
-            $attachments[] = $objNew;
-        }
-        $this->attachments = $attachments;
+        // disable attachments for now
+
+
+        // $attachments = array();
+        // foreach ($this->getSections(self::SECTION_ATTACHMENTS) as $section) {
+        //     $obj = $this->getSection($section);
+        //     $attachment = new IncomingMessageAttachment($obj);
+        //     $objNew = new \stdClass();
+        //     $objNew->name = $attachment->name;
+        //     $objNew->body = $attachment->body;
+        //     $objNew->info = $obj;
+        //     $attachments[] = $objNew;
+        // }
+        // $this->attachments = $attachments;
     }
 
     /**
