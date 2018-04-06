@@ -179,7 +179,6 @@ class IncomingMessage
         if ($this->_decode === self::DECODE) {
             $this->decode();
         }
-        $this->getThread();
     }
 
     /**
