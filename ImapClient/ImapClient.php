@@ -207,7 +207,9 @@ class ImapClient
         foreach($thread as $id => $val) {
             list($node, $property) = explode('.', $id);
             if ($property == 'num') {
-                $header = imap_headerinfo($this->imap, $val);
+                $folder = $this->getFolder();
+                $msgno = imap_msgno($folder, $val);
+                $header = imap_headerinfo($this->imap, $msgno);
                 echo '<ul>\n<li>' . $header->Subject . ' by ' . htmlentities($header->fromaddress) . '</li>\n';
             } elseif ($property == 'branch') {
                 echo '</ul>\n';
