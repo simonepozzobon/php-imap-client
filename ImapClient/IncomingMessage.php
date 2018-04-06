@@ -55,14 +55,6 @@ class IncomingMessage
     public $header;
 
     /**
-     * Thread of the message.
-     *
-     * @var object
-     */
-    public $thread;
-
-
-    /**
      * The message.
      *
      * @var object
@@ -189,13 +181,6 @@ class IncomingMessage
         }
         $this->getThread();
     }
-
-    protected function getThread() {
-        $thread = imap_thread($this->imapStream);
-        dump($thread);
-        $this->thread = $thread;
-    }
-
 
     /**
      * Get headers in the current message.
@@ -752,7 +737,6 @@ class IncomingMessage
             'attachments' => $this->attachments,
             'section' => $this->section,
             'structure' => $this->structure,
-            'thread' => $this->thread,
             'debug' => $this->debug,
         );
     }

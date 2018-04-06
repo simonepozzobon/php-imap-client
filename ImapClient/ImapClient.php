@@ -69,6 +69,13 @@ class ImapClient
     protected $folder = "INBOX";
 
     /**
+     * Current folder
+     *
+     * @var string
+     */
+    public $threads;
+
+    /**
      * Initialize imap helper
      *
      * @param string $mailbox
@@ -193,6 +200,20 @@ class ImapClient
         $connect->connect($config['connect']);
         $this->imap = $connect->getImap();
         $this->mailbox = $connect->getMailbox();
+    }
+
+    public function getThreads() {
+        $threads = imap_thread($this->imap);
+        foreach ($threads as $key => $val) {
+            $tree = explode('.', $key);
+            if ($tree[1] == 'num') {
+                $header = imap_headerinfo($nntp, $val);
+                echo "<ul>\n\t<li>" . $header->fromaddress . "\n";
+            } elseif ($tree[1] == 'branch') {
+                echo "\t</li>\n</ul>\n";
+            }
+        }
+        return $threads;
     }
 
     /**
