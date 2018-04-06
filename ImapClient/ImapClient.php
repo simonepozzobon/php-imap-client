@@ -489,10 +489,6 @@ class ImapClient
         if(!$result){
             throw new ImapClientException('Messages not found. Or this criteria not supported on your email server.');
         };
-        if ($number == 0)
-        {
-            $number = count($result);
-        }
         if ($result)
         {
             $ids = array();
@@ -500,19 +496,48 @@ class ImapClient
             {
                 $ids[] = $i;
             }
-            $ids = array_chunk($ids, $number);
-            $ids = array_slice($ids[0], $start, $number);
 
-            $emails = array();
-            foreach ($ids as $id)
+            if ($order == 'DESC')
             {
-                $emails[] = $this->getMessage($id);
+                $ids = array_reverse($ids);
+            }
+
+            if (count($ids) > $number) {
+                $ids = array_chunk($ids, $number);
+                $ids = $ids[$start];
+            }
+
+            if (isset($ids)) {
+                foreach ($ids as $id) {
+                    $emails[] = $this->getMessage($id);
+                }
             }
         }
-        if ($order == 'DESC')
-        {
-            $emails = array_reverse($emails);
-        }
+
+        // if ($number == 0)
+        // {
+        //     $number = count($result);
+        // }
+        // if ($result)
+        // {
+        //     $ids = array();
+        //     foreach ($result as $k => $i)
+        //     {
+        //         $ids[] = $i;
+        //     }
+        //     $ids = array_chunk($ids, $number);
+        //     $ids = array_slice($ids[0], $start, $number);
+        //
+        //     $emails = array();
+        //     foreach ($ids as $id)
+        //     {
+        //         $emails[] = $this->getMessage($id);
+        //     }
+        // }
+        // if ($order == 'DESC')
+        // {
+        //     $emails = array_reverse($emails);
+        // }
 
         return $emails;
     }
