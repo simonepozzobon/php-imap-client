@@ -705,7 +705,7 @@ class IncomingMessage
      */
     protected function decodeBody()
     {
-        if ($this->message->types) {
+        if ($this->message) {
             foreach ($this->message->types as $typeMessage) {
                 switch ($this->message->$typeMessage->structure->encoding) {
                     case 3:
